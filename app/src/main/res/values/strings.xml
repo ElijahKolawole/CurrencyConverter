@@ -11,4 +11,11 @@
     <string name="zar">ZAR</string>
     <string name="hint">Enter Value!</string>
     <string name="result">RSLT</string>
+    <string-array name="spinnerA">
+        <item>@string/usd</item>
+        <item>@string/gbp</item>
+        <item>@string/cad</item>
+        <item>@string/zar</item>
+        <item>@string/eur</item>
+    </string-array>
 </resources>
