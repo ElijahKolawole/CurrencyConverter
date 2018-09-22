@@ -13,7 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity  {
+import static com.adefemikolawole.currencyconverter.R.id.spFrom;
+
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 SpinnerActivity spinnerActivity;
     String text;
     Spinner spFrom;
@@ -32,12 +34,12 @@ SpinnerActivity spinnerActivity;
         Log.d(TAG, "checking...");
         Log.d(TAG, user_input);
 //set values for spinnerFrom
-      spFrom = (Spinner) findViewById(R.id.spFrom); //get THe spFrom form the acctivity_main layout
+      spFrom = (Spinner) findViewById(R.id.spFrom); //get THe spFrom form the activity_main layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.spinnerFrom, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spFrom.setAdapter(adapter);
-        spFrom.setOnItemSelectedListener(spinnerActivity);
+        spFrom.setOnItemSelectedListener(MainActivity.this);
 
 
 //set values for spinnerTo
@@ -46,7 +48,7 @@ SpinnerActivity spinnerActivity;
         adapterB.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spTo.setAdapter(adapterB);
-    spTo.setOnItemSelectedListener(spinnerActivity);
+    spTo.setOnItemSelectedListener(MainActivity.this);
 
 
     // set activity for button Convert
@@ -72,29 +74,55 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
 //textview Result
         tvResult =  (TextView) findViewById(R.id.tvResult);
+
+
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner spin = (Spinner)parent;
+        Spinner spin2 = (Spinner)parent;
+        if(spin.getId() == R.id.spFrom)
+        {
+            Toast.makeText(MainActivity.this, "Base Curr:" ,Toast.LENGTH_SHORT).show();
+        }
+        if(spin2.getId() == R.id.spTo)
+        {
+            Toast.makeText(this, "Target Curr:" ,Toast.LENGTH_SHORT).show();
+        }
+        Log.d(parent.getContext().toString(), String.valueOf(position));
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent){
+
+
+
+        Toast.makeText(MainActivity.this, "Choose [Base] & [Target] currency", Toast.LENGTH_SHORT).show();
+
+    }
 
 
     class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
 
 
-       @Override
+   /*    @Override
        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-          spTo.setSelection(position);
-            text = parent.getItemAtPosition(position).toString();
+           Spinner spin = (Spinner)parent;
+           Spinner spin2 = (Spinner)parent;
+          //spTo.setSelection(position);
+            //text = parent.getItemAtPosition(position).toString();
            Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
         //System.out.println("TAG = " + TAG);
 
            Log.d(parent.getContext().toString(), String.valueOf(position));
-
        }
 
        @Override
-       public void onNothingSelected(AdapterView<?> parent) {
+       public void onNothingSelected(AdapterView<?> parent){
+           Toast.makeText(MainActivity.this, "Please select  your base currency and target currency", Toast.LENGTH_SHORT).show();
 
-       }
+       }*/
 
    }
 
