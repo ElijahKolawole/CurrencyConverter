@@ -16,10 +16,12 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity  {
 SpinnerActivity spinnerActivity;
     String text;
+    Spinner spFrom;
     Spinner spTo;
     String user_input  ="";
    Button btConvert;
    TextView tvResult;
+    double userDouble;
     private static final String TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +32,14 @@ SpinnerActivity spinnerActivity;
         Log.d(TAG, "checking...");
         Log.d(TAG, user_input);
 //set values for spinnerFrom
-        Spinner spFrom = (Spinner) findViewById(R.id.spFrom); //get THe spFrom form the acctivity_main layout
-
+      spFrom = (Spinner) findViewById(R.id.spFrom); //get THe spFrom form the acctivity_main layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.spinnerFrom, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spFrom.setAdapter(adapter);
         spFrom.setOnItemSelectedListener(spinnerActivity);
+
+
 //set values for spinnerTo
          spTo = findViewById(R.id.spTo);
         ArrayAdapter<CharSequence> adapterB = ArrayAdapter.createFromResource(MainActivity.this, R.array.spinnerTo, android.R.layout.simple_spinner_item);
@@ -54,7 +58,6 @@ btConvert.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         getUserInput();
         setTvResult();
-
         if (tvResult.getText().equals(tvResult)){
             btConvert.setEnabled(false);
         }
@@ -75,6 +78,8 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
 
     class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
+
+
        @Override
        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
           spTo.setSelection(position);
@@ -99,6 +104,7 @@ btConvert.setOnClickListener(new View.OnClickListener() {
        try{
            Double.parseDouble(user_input);
            user_input = user_input.toString();
+           userDouble = Double.parseDouble(user_input);
 
        }
        catch (Exception x){
@@ -108,12 +114,18 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
    }
 
-   public void setTvResult(){
-       tvResult.setText(user_input);
+    public void setTvResult(){
+       double usdToGbp = usdToGbp(userDouble); //usdToGbp;
+
+        tvResult.setText(String.valueOf(usdToGbp));
+
+       //tvResult.setText(user_input);
        String checker = tvResult.getText().toString();
 
        if (tvResult.getText().toString().equals( "")){
-           tvResult.setText(String.valueOf(0));
+           //tvResult.setText(String.valueOf(0));
+           tvResult.setText(String.valueOf(usdToGbp));
+
        }
        else if  (tvResult.getText().toString().equals(checker)){
            tvResult.setText(checker);
@@ -121,7 +133,9 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
        }
        else{
-           tvResult.setText(user_input);
+           //tvResult.setText(user_input);
+           tvResult.setText(String.valueOf(usdToGbp));
+
        }
 
    }
@@ -152,8 +166,17 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
    }
 
-   public void usdTo(double user_input){
-
+   public  double usdToGbp(double user_input){
+        double answer = 0.0;
+     final double oneDolToPds = 0.76;
+     return user_input * oneDolToPds;
 
    }
+
+    public  double gbpToUsd(double user_input){
+        double answer = 0.0;
+        final double gbpToUsd = 1.31;
+        return user_input * gbpToUsd;
+
+    }
 }
