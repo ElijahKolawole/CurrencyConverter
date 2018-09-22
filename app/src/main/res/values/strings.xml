@@ -28,4 +28,5 @@
         <item>@string/usd</item>
         <item>@string/zar</item>
     </string-array>
+
 </resources>

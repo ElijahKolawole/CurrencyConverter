@@ -54,6 +54,15 @@ btConvert.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         getUserInput();
         setTvResult();
+
+        if (tvResult.getText().equals(tvResult)){
+            btConvert.setEnabled(false);
+        }
+        else{
+            btConvert.setEnabled(true);
+        }
+
+
     }
 });
 
@@ -86,21 +95,35 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
    public  void getUserInput(){
        EditText txtMoneyValue = (EditText) findViewById(R.id.txtMoneyValue);
-       user_input += txtMoneyValue.getText().toString();
+       user_input = txtMoneyValue.getText().toString();
        try{
-           Integer.parseInt(user_input);
-           user_input += user_input.toString();
+           Double.parseDouble(user_input);
+           user_input = user_input.toString();
 
        }
        catch (Exception x){
            Log.d(TAG, "Error in conversion of user input");
-           Toast.makeText(MainActivity.this, "Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
+           Toast.makeText(MainActivity.this, "Empty input :: Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
        }
 
    }
 
    public void setTvResult(){
        tvResult.setText(user_input);
+       String checker = tvResult.getText().toString();
+
+       if (tvResult.getText().toString().equals( "")){
+           tvResult.setText(String.valueOf(0));
+       }
+       else if  (tvResult.getText().toString().equals(checker)){
+           tvResult.setText(checker);
+           Toast.makeText(MainActivity.this, "Done\nEnter another value for conversion  ", Toast.LENGTH_LONG).show();
+
+       }
+       else{
+           tvResult.setText(user_input);
+       }
+
    }
    public void convertValue(int position){
 
@@ -125,6 +148,11 @@ btConvert.setOnClickListener(new View.OnClickListener() {
         }
 
 
+
+
+   }
+
+   public void usdTo(double user_input){
 
 
    }
