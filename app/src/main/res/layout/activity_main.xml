@@ -39,11 +39,11 @@
         android:ems="10"
         android:gravity="center_vertical|center_horizontal"
         android:hint="@string/hint"
-        android:inputType="textPersonName"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCurrConverter" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCurrConverter"
+        android:inputType = "number"/>
 
     <TextView
         android:id="@+id/txtFrom"
@@ -96,7 +96,7 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btConvert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -104,14 +104,16 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="200dp"
+        android:includeFontPadding="false"
         android:text="@string/convert"
+        android:textAllCaps="false"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spFrom" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -119,10 +121,12 @@
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/result"
-        android:textSize="25sp"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btConvert" />
 
 </android.support.constraint.ConstraintLayout>

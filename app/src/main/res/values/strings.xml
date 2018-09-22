@@ -10,7 +10,7 @@
     <string name="cad">CAD</string>
     <string name="zar">ZAR</string>
     <string name="hint">Enter Value!</string>
-    <string name="result">RSLT</string>
+    <string name="result">""</string>
     <string-array name="spinnerFrom">
         <item>@string/usd</item>
         <item>@string/gbp</item>
