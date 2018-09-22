@@ -108,7 +108,7 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
        }
        catch (Exception x){
-           Log.d(TAG, "Error in conversion of user input");
+           Log.d(TAG, "Empty input :: Check your input!!!\nMake sure your input is right!!! ");
            Toast.makeText(MainActivity.this, "Empty input :: Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
        }
 
@@ -122,19 +122,18 @@ btConvert.setOnClickListener(new View.OnClickListener() {
        //tvResult.setText(user_input);
        String checker = tvResult.getText().toString();
 
-       if (tvResult.getText().toString().equals( "")){
-           //tvResult.setText(String.valueOf(0));
-           tvResult.setText(String.valueOf(usdToGbp));
+       if (tvResult.getText().toString().equals( "") &&!tvResult.getText().toString().equals( String.valueOf(0)) ){
 
-       }
-       else if  (tvResult.getText().toString().equals(checker)){
-           tvResult.setText(checker);
-           Toast.makeText(MainActivity.this, "Done\nEnter another value for conversion  ", Toast.LENGTH_LONG).show();
-
-       }
-       else{
            //tvResult.setText(user_input);
+           tvResult.setText(String.valueOf(String.valueOf(0)));
+           Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
+       }
+
+       else{
+
            tvResult.setText(String.valueOf(usdToGbp));
+           Toast.makeText(MainActivity.this, "Done : Enter another value.", Toast.LENGTH_LONG);
+
 
        }
 
@@ -180,3 +179,5 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
     }
 }
+
+
