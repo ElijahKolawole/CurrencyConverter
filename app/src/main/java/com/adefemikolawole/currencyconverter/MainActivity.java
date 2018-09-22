@@ -84,7 +84,7 @@ btConvert.setOnClickListener(new View.OnClickListener() {
         Spinner spin2 = (Spinner)parent;
         if(spin.getId() == R.id.spFrom)
         {
-            Toast.makeText(MainActivity.this, "Base Curr:" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Base Curr:"+ "parent:"+parent+ "Position:"+parent+ "id:"+id + "view:"+view,Toast.LENGTH_SHORT).show();
         }
         if(spin2.getId() == R.id.spTo)
         {
@@ -95,7 +95,6 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public void onNothingSelected(AdapterView<?> parent){
-
 
 
         Toast.makeText(MainActivity.this, "Choose [Base] & [Target] currency", Toast.LENGTH_SHORT).show();
