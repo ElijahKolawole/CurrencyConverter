@@ -105,7 +105,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="200dp"
         android:includeFontPadding="false"
         android:text="@string/convert"
         android:textAllCaps="false"
@@ -115,22 +115,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spFrom" />
 
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/result"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btConvert" />
 
     <Button
         android:id="@+id/btAbout"
@@ -140,7 +124,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="200dp"
         android:gravity="end"
         android:text="@string/about"
         android:textAllCaps="false"
@@ -149,5 +133,24 @@
         app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toEndOf="@+id/btConvert"
         app:layout_constraintTop_toBottomOf="@+id/spTo" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/result"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btConvert" />
 
 </android.support.constraint.ConstraintLayout>

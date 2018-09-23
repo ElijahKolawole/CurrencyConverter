@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.cert.CertPathBuilderSpi;
+
 import static com.adefemikolawole.currencyconverter.R.id.spFrom;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -22,6 +24,7 @@ SpinnerActivity spinnerActivity;
     Spinner spTo;
     String user_input  ="";
    Button btConvert;
+   Button btAbout;
    TextView tvResult;
     double userDouble;
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -75,8 +78,19 @@ btConvert.setOnClickListener(new View.OnClickListener() {
 //textview Result
         tvResult =  (TextView) findViewById(R.id.tvResult);
 
+btAbout = (Button) findViewById(R.id.btAbout);
+showAboutMessage();
 
     }
+    public void showAboutMessage(){
+        btAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Author: Adefemi Kolawole\n  ITEC 4550 :: Fall 2018",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
