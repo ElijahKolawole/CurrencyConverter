@@ -144,23 +144,90 @@ showAboutMessage();
     }
 
 public void setSwitchChecker(){
-        if ((itemIndexFrom == 0) && (itemIndexTo == 0)){
+
+    //check for From Euro toTheOtherFIveCurrencies
+        if ((itemIndexFrom == 1) && (itemIndexTo == 1)){
             switchValue = 1;
         }
-        if ((itemIndexFrom == 0) && (itemIndexTo == 1)){
+        if ((itemIndexFrom == 1) && (itemIndexTo == 2)){
             switchValue = 2;
         }
-        if ((itemIndexFrom == 0) && (itemIndexTo == 2)){
+        if ((itemIndexFrom == 1) && (itemIndexTo == 3)){
             switchValue = 3;
         }
-        if ((itemIndexFrom == 0) && (itemIndexTo == 3)){
+        if ((itemIndexFrom == 1) && (itemIndexTo == 4)){
             switchValue = 4;
         }
-        if ((itemIndexFrom == 0) && (itemIndexTo == 4)){
+        if ((itemIndexFrom == 1) && (itemIndexTo == 5)){
             switchValue = 5;
         }
+            //check for From usd toTheOtherFIveCurrencies
+            if ((itemIndexFrom == 2) && (itemIndexTo == 1)){
+                switchValue = 6;
+            }
+            if ((itemIndexFrom == 2) && (itemIndexTo == 2)){
+                switchValue = 7;
+            }
+            if ((itemIndexFrom == 2) && (itemIndexTo == 3)){
+                switchValue = 8;
+            }
+            if ((itemIndexFrom == 2) && (itemIndexTo == 4)){
+                switchValue = 9;
+            }
+            if ((itemIndexFrom == 2) && (itemIndexTo == 5)){
+                switchValue = 10;
+            }
 
+                //check for From Gbp toTheOtherFIveCurrencies
+                if ((itemIndexFrom == 3) && (itemIndexTo == 1)){
+                    switchValue = 11;
+                }
+                if ((itemIndexFrom == 3) && (itemIndexTo == 2)){
+                    switchValue = 12;
+                }
+                if ((itemIndexFrom == 3) && (itemIndexTo == 3)){
+                    switchValue = 13;
+                }
+                if ((itemIndexFrom == 3) && (itemIndexTo == 4)){
+                    switchValue = 14;
+                }
+                if ((itemIndexFrom == 3) && (itemIndexTo == 5)){
+                    switchValue = 15;
+                }
 
+                        //check for From Cad toTheOtherFIveCurrencies
+                        if ((itemIndexFrom == 4) && (itemIndexTo == 1)){
+                            switchValue = 16;
+                        }
+                        if ((itemIndexFrom == 4) && (itemIndexTo == 2)){
+                            switchValue = 17;
+                        }
+                        if ((itemIndexFrom == 4) && (itemIndexTo == 3)){
+                            switchValue = 18;
+                        }
+                        if ((itemIndexFrom == 4) && (itemIndexTo == 4)){
+                            switchValue = 19;
+                        }
+                        if ((itemIndexFrom == 4) && (itemIndexTo == 5)){
+                            switchValue = 20;
+                        }
+
+                                //check for From Zar toTheOtherFIveCurrencies
+                                if ((itemIndexFrom == 5) && (itemIndexTo == 1)){
+                                    switchValue = 21;
+                                }
+                                if ((itemIndexFrom == 5) && (itemIndexTo == 2)){
+                                    switchValue = 22;
+                                }
+                                if ((itemIndexFrom == 5) && (itemIndexTo == 3)){
+                                    switchValue = 23;
+                                }
+                                if ((itemIndexFrom == 5) && (itemIndexTo == 4)){
+                                    switchValue = 24;
+                                }
+                                if ((itemIndexFrom == 5) && (itemIndexTo == 5)){
+                                    switchValue = 25;
+                                }
 }
     class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
 
@@ -231,7 +298,7 @@ public void setSwitchChecker(){
         getUserInput();
         switch (switchValue){
 
-
+//check for From Euro toTheOtherFIveCurrencies
             case 1:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
                 break;
@@ -247,7 +314,66 @@ public void setSwitchChecker(){
             case 5:
                 Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
                 break;
-
+            case 6:
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 7:
+                Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 8:
+                Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 9:
+                Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 10:
+                Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 11:
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 12:
+                Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 13:
+                Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 14:
+                Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 15:
+                Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 16:
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 17:
+                Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 18:
+                Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 19:
+                Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 20:
+                Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 21:
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 22:
+                Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 23:
+                Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 24:
+                Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
+            case 25:
+                Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
 
 
         }
