@@ -20,6 +20,11 @@ import static com.adefemikolawole.currencyconverter.R.id.txtMoneyValue;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 SpinnerActivity spinnerActivity;
+    int itemIndexFrom;
+    int itemIndexTo;
+    String itemFrom;
+    String itemTo;
+    int switchValue=0;
     String text;
     Spinner spFrom;
     Spinner spTo;
@@ -62,6 +67,7 @@ btConvert.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         getUserInput();
+        //convertValue();
         setTvResult();
         if (tvResult.getText().equals(tvResult)){
             btConvert.setEnabled(false);
@@ -94,17 +100,39 @@ showAboutMessage();
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         Spinner spin = (Spinner)parent;
         Spinner spin2 = (Spinner)parent;
+        itemFrom = parent.getItemAtPosition(position).toString();
+        itemTo = parent.getItemAtPosition(position).toString();
+
+
         if(spin.getId() == R.id.spFrom)
         {
-            Toast.makeText(MainActivity.this, "Base Curr:"+ "parent:"+parent+ "Position:"+parent+ "id:"+id + "view:"+view,Toast.LENGTH_SHORT).show();
+            itemIndexFrom = (int) id;
+            //Toast.makeText(MainActivity.this, "Base Curr:"+ "parent:"+parent+ "Position:"+parent+ "id:"+id + "view:"+view,Toast.LENGTH_SHORT).show();
+           // Log.d(TAG, "Base Curr||Plain: "+ "parent: "+parent+ "Position: "+position+ "id:"+id + "view:"+view);
+            //Log.d(TAG, "Base; Curr||Formatted:"+ "parent:"+parent.toString()+ "Position:"+String.valueOf(position)+ "id:"+String.valueOf(id) + "view:"+view.toString());
+            //Log.d(TAG, "spFrom || id/itemIndexFrom : "+ itemIndexFrom  + " item: " + itemFrom + ", spFrom.getId(): "+ spFrom.getId());
+
+
         }
+
         if(spin2.getId() == R.id.spTo)
         {
-            Toast.makeText(this, "Target Curr:" ,Toast.LENGTH_SHORT).show();
+            itemIndexTo = (int) id;
+            //Toast.makeText(this, "Target Curr:" ,Toast.LENGTH_SHORT).show();
+           // Log.d(TAG, "spTo || id/itemIndexTo: "+ itemIndexTo  + " item: " + itemTo + ", spTo.getId(): "+ spTo.getId());
+           // Log.d(TAG, "spTo.getId(): "+spTo.getId() );
+            //Log.d(parent.getContext().toString(), String.valueOf(position));
         }
-        Log.d(parent.getContext().toString(), String.valueOf(position));
+        Log.d(TAG, "spFrom || id/itemIndexFrom : "+ itemIndexFrom  + " item: " + itemFrom + ", spFrom.getId(): "+ spFrom.getId() + "::spTo || id/itemIndexTo : "+ itemIndexTo  + " item: " + itemTo + ", spTo.getId(): "+ spTo.getId());
+
+
+
+        setSwitchChecker();
+
+   Log.d(TAG, "switchValue:" + switchValue);
     }
 
     @Override
@@ -115,7 +143,25 @@ showAboutMessage();
 
     }
 
+public void setSwitchChecker(){
+        if ((itemIndexFrom == 0) && (itemIndexTo == 0)){
+            switchValue = 1;
+        }
+        if ((itemIndexFrom == 0) && (itemIndexTo == 1)){
+            switchValue = 2;
+        }
+        if ((itemIndexFrom == 0) && (itemIndexTo == 2)){
+            switchValue = 3;
+        }
+        if ((itemIndexFrom == 0) && (itemIndexTo == 3)){
+            switchValue = 4;
+        }
+        if ((itemIndexFrom == 0) && (itemIndexTo == 4)){
+            switchValue = 5;
+        }
 
+
+}
     class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
 
 
@@ -179,23 +225,28 @@ showAboutMessage();
        }
 
    }
-   public void convertValue(int position){
+   public void convertValue(){
 
        btConvert = (Button) findViewById(R.id.btConvert);
         getUserInput();
-        switch (position){
-            case 0:
+        switch (switchValue){
+
 
             case 1:
-
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
             case 2:
-
+                Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
             case 3:
-
+                Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
             case 4:
-
+                Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
             case 5:
-
+                Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                break;
 
 
 
@@ -209,7 +260,7 @@ showAboutMessage();
    public  double usdToGbp(double user_input){
         double answer = 0.0;
      final double oneDolToPds = 0.76;
-     return user_input * oneDolToPds;
+     return 1 / user_input * oneDolToPds;
 
    }
 

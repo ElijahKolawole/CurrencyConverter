@@ -10,10 +10,11 @@
     <string name="eur">EUR</string>
     <string name="cad">CAD</string>
     <string name="zar">ZAR</string>
+    <string name="curr">SELECT</string>
     <string name="hint">Enter Value!</string>
     <string name="result">""</string>
     <string-array name="spinnerFrom">
-
+        <item>@string/curr</item>
         <item>@string/eur</item>
         <item>@string/usd</item>
         <item>@string/gbp</item>
@@ -23,7 +24,7 @@
     </string-array>
 
     <string-array name="spinnerTo">
-
+        <item>@string/curr</item>
         <item>@string/eur</item>
         <item>@string/usd</item>
         <item>@string/gbp</item>
