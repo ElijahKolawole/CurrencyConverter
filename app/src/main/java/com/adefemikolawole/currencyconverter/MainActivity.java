@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.security.cert.CertPathBuilderSpi;
 
 import static com.adefemikolawole.currencyconverter.R.id.spFrom;
+import static com.adefemikolawole.currencyconverter.R.id.txtMoneyValue;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 SpinnerActivity spinnerActivity;
@@ -32,8 +33,7 @@ SpinnerActivity spinnerActivity;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        System.out.println("TAG = " + TAG);
+    System.out.println("TAG = " + TAG);
         Log.d(TAG, "checking...");
         Log.d(TAG, user_input);
 //set values for spinnerFrom
