@@ -27,6 +27,8 @@ import java.math.MathContext;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.cert.CertPathBuilderSpi;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.adefemikolawole.currencyconverter.R.id.spFrom;
 import static com.adefemikolawole.currencyconverter.R.id.txtMoneyValue;
@@ -49,10 +51,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
    TextView tvResult;
     double userDouble;
     private static final String TAG = MainActivity.class.getSimpleName();
+    /*JSOn related itesm*/
+    ArrayList<HashMap<String, String >> currencies;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        currencies = new ArrayList<>();
+        new GetCurrecnies().execute();
+
     System.out.println("TAG = " + TAG);
         Log.d(TAG, "checking...");
         //Log.d(TAG, user_input);
@@ -249,17 +257,28 @@ public void setSwitchChecker(){
        user_input = txtMoneyValue.getText().toString();
        if (user_input.equals( " ") ){
            //tvResult.setText(user_input);
-           Toast.makeText(MainActivity.this, "No value to convert\n input must be greater than 0", Toast.LENGTH_LONG);
+           Toast.makeText(MainActivity.this, "No value to convert: Enter value", Toast.LENGTH_LONG);
            // Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
        }
-else {
+       else    if (user_input.equals( String.valueOf(0)) ){
+           //tvResult.setText(user_input);
+           Toast.makeText(MainActivity.this, "Input must be greater than 0", Toast.LENGTH_LONG);
+           // Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
+       }
+
+       else {
            //convertValue();
            try {
-               Double.parseDouble(user_input);
-               user_input = user_input.toString();
+               double doubleUserInput =  Double.parseDouble(user_input);
+
+               user_input = String.valueOf(doubleUserInput);
+               Toast.makeText(MainActivity.this, "Input must be greater than 0", Toast.LENGTH_LONG);
+
+           } catch (NumberFormatException nfe){
+               Log.d(TAG, nfe.toString());
 
            } catch (Exception x) {
-               Log.d(TAG, "Check your input!!!\nMake sure your input is right!!! ");
+               Log.d(TAG, x.toString());
               Toast.makeText(MainActivity.this, "Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
            }
        }
@@ -306,6 +325,9 @@ else {
        double cadValue = 1.521707;
        double zarValue = 16.861978;
        btConvert = (Button) findViewById(R.id.btConvert);
+       getUserInput();
+      try {
+          Double.parseDouble(user_input);
 
         switch (switchValue){
 
@@ -314,30 +336,38 @@ else {
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
                 //finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
                 Toast.makeText(MainActivity.this, "Select Currencies!!!", Toast.LENGTH_SHORT).show();
-                getUserInput();
+
 
                 break;
             case 1:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
-                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
-
+               // finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
+            finalConvertedValue = Double.parseDouble(user_input ) * eurValue;
                 break;
             case 2:
                 Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
-                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * usdValue);
+                //finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * usdValue);
+                finalConvertedValue = Double.parseDouble(user_input ) * usdValue;
+
 
                 break;
             case 3:
                 Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
-                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * gbpValue);
+               // finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * gbpValue);
+                finalConvertedValue = Double.parseDouble(user_input ) * gbpValue;
+
                 break;
             case 4:
                 Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
-                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * cadValue);
+               // finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * cadValue);
+                finalConvertedValue = Double.parseDouble(user_input ) * cadValue;
+
                 break;
             case 5:
                 Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
-                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * zarValue);
+               // finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * zarValue);
+                finalConvertedValue = Double.parseDouble(user_input ) * zarValue;
+
                 break;
             case 6:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
@@ -403,13 +433,16 @@ else {
 
         }
 
-
+      }
+      catch (Exception e){
+          Log.d(TAG, e.toString());
+      }
 
 
    }
 
 
-
+/*
   private class JsonTask extends AsyncTask<String, String, String> {
 
 
@@ -436,7 +469,16 @@ else {
 
           return null;
       }
-  }
+  }*/
+    private class GetCurrecnies extends AsyncTask<Void, Void, Void>{
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        return null;
+    }
+}
+
+
 }
 
 
