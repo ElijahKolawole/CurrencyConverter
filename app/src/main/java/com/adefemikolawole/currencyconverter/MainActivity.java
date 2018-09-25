@@ -40,7 +40,7 @@ SpinnerActivity spinnerActivity;
         setContentView(R.layout.activity_main);
     System.out.println("TAG = " + TAG);
         Log.d(TAG, "checking...");
-        Log.d(TAG, user_input);
+        //Log.d(TAG, user_input);
 //set values for spinnerFrom
       spFrom = (Spinner) findViewById(R.id.spFrom); //get THe spFrom form the activity_main layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.spinnerFrom, android.R.layout.simple_spinner_item);
@@ -103,13 +103,13 @@ showAboutMessage();
 
         Spinner spin = (Spinner)parent;
         Spinner spin2 = (Spinner)parent;
-        itemFrom = parent.getItemAtPosition(position).toString();
-        itemTo = parent.getItemAtPosition(position).toString();
-
+        getUserInput();
 
         if(spin.getId() == R.id.spFrom)
         {
             itemIndexFrom = (int) id;
+            itemFrom = parent.getItemAtPosition(position).toString();
+
             //Toast.makeText(MainActivity.this, "Base Curr:"+ "parent:"+parent+ "Position:"+parent+ "id:"+id + "view:"+view,Toast.LENGTH_SHORT).show();
            // Log.d(TAG, "Base Curr||Plain: "+ "parent: "+parent+ "Position: "+position+ "id:"+id + "view:"+view);
             //Log.d(TAG, "Base; Curr||Formatted:"+ "parent:"+parent.toString()+ "Position:"+String.valueOf(position)+ "id:"+String.valueOf(id) + "view:"+view.toString());
@@ -121,6 +121,8 @@ showAboutMessage();
         if(spin2.getId() == R.id.spTo)
         {
             itemIndexTo = (int) id;
+            itemTo = parent.getItemAtPosition(position).toString();
+
             //Toast.makeText(this, "Target Curr:" ,Toast.LENGTH_SHORT).show();
            // Log.d(TAG, "spTo || id/itemIndexTo: "+ itemIndexTo  + " item: " + itemTo + ", spTo.getId(): "+ spTo.getId());
            // Log.d(TAG, "spTo.getId(): "+spTo.getId() );
