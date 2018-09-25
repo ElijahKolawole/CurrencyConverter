@@ -32,7 +32,6 @@ import static com.adefemikolawole.currencyconverter.R.id.spFrom;
 import static com.adefemikolawole.currencyconverter.R.id.txtMoneyValue;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-SpinnerActivity spinnerActivity;
     double finalConvertedValue;
     BigDecimal bd;
     double roundedConvertedValue;
@@ -84,14 +83,7 @@ btConvert.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         getUserInput();
          convertValue();
-      // user_input = String.valueOf(txtMoneyValue);
-   /*     if (tvResult.getText().equals(tvResult)){
-            btConvert.setEnabled(false);
-        }
-        else{
-            btConvert.setEnabled(true);
-        }
-*/
+        setTvResult();
 
     }
 });
@@ -119,7 +111,7 @@ showAboutMessage();
 
         Spinner spin = (Spinner)parent;
         Spinner spin2 = (Spinner)parent;
-        getUserInput();
+        //getUserInput();
 
         if(spin.getId() == R.id.spFrom)
         {
@@ -162,7 +154,10 @@ showAboutMessage();
     }
 
 public void setSwitchChecker(){
-
+    //check for From Euro toTheOtherFIveCurrencies
+    if ((itemIndexFrom == 0) && (itemIndexTo == 0)){
+        switchValue = 0;
+    }
     //check for From Euro toTheOtherFIveCurrencies
         if ((itemIndexFrom == 1) && (itemIndexTo == 1)){
             switchValue = 1;
@@ -247,76 +242,63 @@ public void setSwitchChecker(){
                                     switchValue = 25;
                                 }
 }
-    class SpinnerActivity extends MainActivity implements AdapterView.OnItemSelectedListener{
 
-
-   /*    @Override
-       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-           Spinner spin = (Spinner)parent;
-           Spinner spin2 = (Spinner)parent;
-          //spTo.setSelection(position);
-            //text = parent.getItemAtPosition(position).toString();
-           Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
-        //System.out.println("TAG = " + TAG);
-
-           Log.d(parent.getContext().toString(), String.valueOf(position));
-       }
-
-       @Override
-       public void onNothingSelected(AdapterView<?> parent){
-           Toast.makeText(MainActivity.this, "Please select  your base currency and target currency", Toast.LENGTH_SHORT).show();
-
-       }*/
-
-   }
 
    public  void getUserInput(){
        EditText txtMoneyValue = (EditText) findViewById(R.id.txtMoneyValue);
        user_input = txtMoneyValue.getText().toString();
-       try{
-           Double.parseDouble(user_input);
-           user_input = user_input.toString();
-           userDouble = Double.parseDouble(user_input);
-
+       if (user_input.equals( " ") ){
+           //tvResult.setText(user_input);
+           Toast.makeText(MainActivity.this, "No value to convert\n input must be greater than 0", Toast.LENGTH_LONG);
+           // Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
        }
-       catch (Exception x){
-           Log.d(TAG, "Empty input :: Check your input!!!\nMake sure your input is right!!! ");
-           Toast.makeText(MainActivity.this, "Empty input :: Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
+else {
+           //convertValue();
+           try {
+               Double.parseDouble(user_input);
+               user_input = user_input.toString();
+
+           } catch (Exception x) {
+               Log.d(TAG, "Check your input!!!\nMake sure your input is right!!! ");
+              Toast.makeText(MainActivity.this, "Check your input!!!\nMake sure your input is right!!! ", Toast.LENGTH_LONG).show();
+           }
        }
 
    }
 
     public void setTvResult(){
+       // getUserInput();
 
-       double usdToGbp = usdToGbp(userDouble); //usdToGbp;
-
+        convertValue();
+        bd  = new BigDecimal(finalConvertedValue);
+        bd = bd.round(new MathContext(4));
+        double roundedConvertedValue = bd.doubleValue();
         //tvResult.setText(String.valueOf(usdToGbp));
 
        //tvResult.setText(user_input);
-       String checker = tvResult.getText().toString();
+       //String checker = tvResult.getText().toString();
 
-       if (tvResult.getText().toString().equals( " ")  || (!tvResult.getText().toString().equals( String.valueOf(0)) )){
-
+     //  if (tvResult.getText().toString().equals( " ")  || (!tvResult.getText().toString().equals( String.valueOf(0)) )){
+       // if (tvResult.getText().toString().equals( " ") ){
+        //if (user_input.equals( " ") ){
            //tvResult.setText(user_input);
-           tvResult.setText(String.valueOf(String.valueOf(0)));
-           Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
+          // Toast.makeText(MainActivity.this, "Please enter a value greater than 0 for conversion", Toast.LENGTH_LONG);
+      // }
+
+      // else{
+           //convertValue();
+           tvResult.setText(String.valueOf(roundedConvertedValue));
+           Log.d(TAG, String.valueOf(roundedConvertedValue));
+           Toast.makeText(MainActivity.this, "Conversion complete.", Toast.LENGTH_LONG);
+
+
        }
 
-       else{
-           convertValue();
-           tvResult.setText(String.valueOf(finalConvertedValue));
-           Toast.makeText(MainActivity.this, "Done : Enter another value.", Toast.LENGTH_LONG);
 
-
-       }
-
-   }
    public void convertValue(){
 
 
-      bd  = new BigDecimal(finalConvertedValue);
-       bd = bd.round(new MathContext(3));
-       double roundedConvertedValue = bd.doubleValue();
+
 
         double eurValue = 1.00;
         double usdValue = 1.17384;
@@ -324,10 +306,17 @@ public void setSwitchChecker(){
        double cadValue = 1.521707;
        double zarValue = 16.861978;
        btConvert = (Button) findViewById(R.id.btConvert);
-        getUserInput();
+
         switch (switchValue){
 
 //check for From Euro toTheOtherFIveCurrencies
+            case 0:
+                Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                //finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
+                Toast.makeText(MainActivity.this, "Select Currencies!!!", Toast.LENGTH_SHORT).show();
+                getUserInput();
+
+                break;
             case 1:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
                 finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
