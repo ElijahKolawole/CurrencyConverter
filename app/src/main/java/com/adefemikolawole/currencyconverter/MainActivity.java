@@ -311,8 +311,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // else{
         //convertValue();
         tvResult.setText(String.valueOf(roundedConvertedValue));
-        Log.d(TAG, String.valueOf(roundedConvertedValue));
-        Toast.makeText(MainActivity.this, "Conversion complete.", Toast.LENGTH_LONG);
+        Log.d(TAG, switchValue + ": " + String.valueOf(roundedConvertedValue));
+       // Toast.makeText(MainActivity.this, "Conversion complete.", Toast.LENGTH_LONG);
 
 
     }
