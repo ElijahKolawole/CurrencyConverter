@@ -383,18 +383,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 8:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / usdValue  *  gbpValue;
+
                     break;
                 case 9:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / usdValue  *  cadValue;
+
                     break;
                 case 10:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / usdValue  *  zarValue;
+
                     break;
                 case 11:
                     Log.d(TAG, "case1||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / gbpValue  *  eurValue;
+
                     break;
                 case 12:
                     Log.d(TAG, "case2||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / gbpValue  *  usdValue;
+
                     break;
                 case 13:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -402,18 +412,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 14:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / gbpValue  *  cadValue;
+
                     break;
                 case 15:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / gbpValue  *  zarValue;
+
                     break;
                 case 16:
                     Log.d(TAG, "case1||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / cadValue  *  eurValue;
                     break;
                 case 17:
                     Log.d(TAG, "case2||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / cadValue  *  usdValue;
                     break;
                 case 18:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / cadValue  *  gbpValue;
                     break;
                 case 19:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -421,18 +438,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 20:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / cadValue  *  zarValue;
                     break;
                 case 21:
                     Log.d(TAG, "case1||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / zarValue  *  eurValue;
                     break;
                 case 22:
                     Log.d(TAG, "case2||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / zarValue  *  usdValue;
                     break;
                 case 23:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / zarValue  *  gbpValue;
                     break;
                 case 24:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue =  Double.parseDouble(user_input) / zarValue  *  cadValue;
                     break;
                 case 25:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
