@@ -32,6 +32,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.security.cert.CertPathBuilderSpi;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -57,20 +58,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     double userDouble;
     private static final String TAG = MainActivity.class.getSimpleName();
     /*JSOn related items*/
-    ArrayList<HashMap<String, String>> rateList;
-    HashMap<String, String> rateMap;
-    String EUR;
-    String USD;
-    String GBP;
-    String CAD;
-    String ZAR;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rateList = new ArrayList<>();
-        new GetCurrencies().execute();
 
 
 
@@ -105,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 getUserInput();
                 convertValue();
                 setTvResult();
-
 
 
             }
@@ -297,11 +289,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void setTvResult() {
         // getUserInput();
+         DecimalFormat df = new DecimalFormat( "#.##" );
 
         convertValue();
-        bd = new BigDecimal(finalConvertedValue);
-        bd = bd.round(new MathContext(4));
-        double roundedConvertedValue = bd.doubleValue();
+
+        String printedValue = df.format(finalConvertedValue);
+        double roundedConvertedValue = Double.parseDouble(printedValue);
+
         //tvResult.setText(String.valueOf(usdToGbp));
 
         //tvResult.setText(user_input);
@@ -350,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 case 1:
                     Log.d(TAG, "case1||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
                     // finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
-                    finalConvertedValue = Double.parseDouble(user_input) * eurValue;
+                    finalConvertedValue = Double.parseDouble(user_input) ;
                     break;
                 case 2:
                     Log.d(TAG, "case2||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -379,9 +373,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 6:
                     Log.d(TAG, "case1||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue = Double.parseDouble(user_input) / usdValue;
+
                     break;
                 case 7:
                     Log.d(TAG, "case2||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue = Double.parseDouble(user_input) ;
+
                     break;
                 case 8:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -400,6 +398,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 13:
                     Log.d(TAG, "case3||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue = Double.parseDouble(user_input) ;
                     break;
                 case 14:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -418,6 +417,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 19:
                     Log.d(TAG, "case4||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue = Double.parseDouble(user_input) ;
                     break;
                 case 20:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
@@ -436,6 +436,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     break;
                 case 25:
                     Log.d(TAG, "case5||switchValue: " + switchValue + ", ItemFrom: " + itemFrom + ", itemTo:" + itemTo);
+                    finalConvertedValue = Double.parseDouble(user_input) ;
                     break;
 
 
@@ -477,150 +478,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
               return null;
           }
       }*/
-     class GetCurrencies extends AsyncTask<Void, Void, Void> {
 
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Toast.makeText(MainActivity.this, ".........downloading conversion rate........", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            HttpHandler sh = new HttpHandler();
-            //Make a request to the server and get response back
-            String url = "http://data.fixer.io/api/latest?access_key=b70449fc1a6ad33f2940bfdbcf125c41";
-            String jsonStr = sh.makeServiceCall(url);
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-            Log.d(TAG, "Response from url: " + jsonStr);
-
-
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonStr);
-
-                    //getting jSon array node
-                    JSONArray rate = jsonObject.getJSONArray("rates");
-
-                    //looping through all contacts
-
-                    for (int i = 0; i < rate.length(); i++) {
-                        JSONObject s = rate.getJSONObject(i);
-                        //currencies name
-                        EUR = s.getString("EUR");
-                        USD = s.getString("USD");
-                        GBP = s.getString("GBP");
-                        CAD = s.getString("CAD");
-                        ZAR = s.getString("ZAR");
-                        System.out.println(EUR + "test");
-
-                       // Log.d(TAG,"rateMap.get(EUR): " + rateMap.get("EUR"));
-                        Log.d(TAG,"EUR: " +EUR);
-
-
-
-                        // tmp hash map for rate
-                        rateMap = new HashMap<>();
-
-                        //add each note to the arraylist
-                        rateMap.put("EUR", EUR);
-                        rateMap.put("USD", USD);
-                        rateMap.put("GBP", GBP);
-                        rateMap.put("CAD", CAD);
-                        rateMap.put("ZAR", ZAR);
-
-                        //adding map to rateLIst
-                        //rateList.add(rateMap);
-
-                        //Log.d(TAG, rateList.toString());
-                       //System.out.println(TAG + "rateMap.get(EUR)" + rateMap.get(EUR));
-
-
-                    }
-
-                } catch (final JSONException e) {
-                    Log.e(TAG, "jSon PArsing Error: " + e.getMessage());
-                    Log.d(TAG, "jSon PArsing Error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(), "jSon PArsing Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            } else {
-                Log.e(TAG, "Couldn't get json server");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-            }
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-        }
-    }
-
-    public class HttpHandler {
-
-        private  final String TAG = HttpHandler.class.getSimpleName();
-
-        public HttpHandler() {
-        }
-
-        public String makeServiceCall(String reqUrl) {
-            String response = null;
-            try {
-                URL url = new URL(reqUrl);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                // read the response
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                response = convertStreamToString(in);
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "MalformedURLException: " + e.getMessage());
-            } catch (ProtocolException e) {
-                Log.e(TAG, "ProtocolException: " + e.getMessage());
-            } catch (IOException e) {
-                Log.e(TAG, "IOException: " + e.getMessage());
-            } catch (Exception e) {
-                Log.e(TAG, "Exception: " + e.getMessage());
-            }
-            return response;
-        }
-
-        private String convertStreamToString(InputStream is) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-
-            String line;
-            try {
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append('\n');
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return sb.toString();
-        }
-    }
 
 
 }
