@@ -10,7 +10,7 @@
     <string name="eur">EUR</string>
     <string name="cad">CAD</string>
     <string name="zar">ZAR</string>
-    <string name="curr">SELECT</string>
+    <string name="curr">SELECT CURRRENCY</string>
     <string name="hint">Enter Value!</string>
     <string name="result">""</string>
     <string-array name="spinnerFrom">

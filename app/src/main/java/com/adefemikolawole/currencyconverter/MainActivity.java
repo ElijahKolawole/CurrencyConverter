@@ -126,7 +126,7 @@ showAboutMessage();
            // Log.d(TAG, "spTo.getId(): "+spTo.getId() );
             //Log.d(parent.getContext().toString(), String.valueOf(position));
         }
-        Log.d(TAG, "spFrom || id/itemIndexFrom : "+ itemIndexFrom  + " item: " + itemFrom + ", spFrom.getId(): "+ spFrom.getId() + "::spTo || id/itemIndexTo : "+ itemIndexTo  + " item: " + itemTo + ", spTo.getId(): "+ spTo.getId());
+        Log.d(TAG, "user_input:"+ user_input +" spFrom || id/itemIndexFrom : "+ itemIndexFrom  + " item: " + itemFrom + ", spFrom.getId(): "+ spFrom.getId() + "::spTo || id/itemIndexTo : "+ itemIndexTo  + " item: " + itemTo + ", spTo.getId(): "+ spTo.getId());
 
 
 
