@@ -1,9 +1,11 @@
 package com.adefemikolawole.currencyconverter;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.MalformedJsonException;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,17 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.security.cert.CertPathBuilderSpi;
 
 import static com.adefemikolawole.currencyconverter.R.id.spFrom;
@@ -20,6 +33,9 @@ import static com.adefemikolawole.currencyconverter.R.id.txtMoneyValue;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 SpinnerActivity spinnerActivity;
+    double finalConvertedValue;
+    BigDecimal bd;
+    double roundedConvertedValue;
     int itemIndexFrom;
     int itemIndexTo;
     String itemFrom;
@@ -67,15 +83,15 @@ btConvert.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         getUserInput();
-        //convertValue();
-        setTvResult();
-        if (tvResult.getText().equals(tvResult)){
+         convertValue();
+      // user_input = String.valueOf(txtMoneyValue);
+   /*     if (tvResult.getText().equals(tvResult)){
             btConvert.setEnabled(false);
         }
         else{
             btConvert.setEnabled(true);
         }
-
+*/
 
     }
 });
@@ -271,14 +287,15 @@ public void setSwitchChecker(){
    }
 
     public void setTvResult(){
+
        double usdToGbp = usdToGbp(userDouble); //usdToGbp;
 
-        tvResult.setText(String.valueOf(usdToGbp));
+        //tvResult.setText(String.valueOf(usdToGbp));
 
        //tvResult.setText(user_input);
        String checker = tvResult.getText().toString();
 
-       if (tvResult.getText().toString().equals( "") &&!tvResult.getText().toString().equals( String.valueOf(0)) ){
+       if (tvResult.getText().toString().equals( " ")  || (!tvResult.getText().toString().equals( String.valueOf(0)) )){
 
            //tvResult.setText(user_input);
            tvResult.setText(String.valueOf(String.valueOf(0)));
@@ -286,8 +303,8 @@ public void setSwitchChecker(){
        }
 
        else{
-
-           tvResult.setText(String.valueOf(usdToGbp));
+           convertValue();
+           tvResult.setText(String.valueOf(finalConvertedValue));
            Toast.makeText(MainActivity.this, "Done : Enter another value.", Toast.LENGTH_LONG);
 
 
@@ -296,6 +313,16 @@ public void setSwitchChecker(){
    }
    public void convertValue(){
 
+
+      bd  = new BigDecimal(finalConvertedValue);
+       bd = bd.round(new MathContext(3));
+       double roundedConvertedValue = bd.doubleValue();
+
+        double eurValue = 1.00;
+        double usdValue = 1.17384;
+        double gbpValue = 0.89578;
+       double cadValue = 1.521707;
+       double zarValue = 16.861978;
        btConvert = (Button) findViewById(R.id.btConvert);
         getUserInput();
         switch (switchValue){
@@ -303,18 +330,25 @@ public void setSwitchChecker(){
 //check for From Euro toTheOtherFIveCurrencies
             case 1:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * eurValue);
+
                 break;
             case 2:
                 Log.d(TAG, "case2||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * usdValue);
+
                 break;
             case 3:
                 Log.d(TAG, "case3||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * gbpValue);
                 break;
             case 4:
                 Log.d(TAG, "case4||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * cadValue);
                 break;
             case 5:
                 Log.d(TAG, "case5||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
+                finalConvertedValue = ( 1 / Double.parseDouble(user_input)  * zarValue);
                 break;
             case 6:
                 Log.d(TAG,  "case1||switchValue: " +switchValue + ", ItemFrom: "+ itemFrom + ", itemTo:" + itemTo);
@@ -385,19 +419,35 @@ public void setSwitchChecker(){
 
    }
 
-   public  double usdToGbp(double user_input){
-        double answer = 0.0;
-     final double oneDolToPds = 0.76;
-     return 1 / user_input * oneDolToPds;
 
-   }
 
-    public  double gbpToUsd(double user_input){
-        double answer = 0.0;
-        final double gbpToUsd = 1.31;
-        return user_input * gbpToUsd;
+  private class JsonTask extends AsyncTask<String, String, String> {
 
-    }
+
+      @Override
+      protected String doInBackground(String... strings) {
+          try{
+              URL url = new URL("http://data.fixer.io/api/latest?access_key=b70449fc1a6ad33f2940bfdbcf125c41");
+              HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
+              InputStream inputStream = httpUrlConnection.getInputStream();
+              BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+              String line = "";
+              while (line != null){
+              }
+          }
+          catch (MalformedJsonException e){
+             e.printStackTrace();
+             Log.d(TAG, e.toString());
+
+          }
+          catch (IOException ioe){
+              Log.d(TAG, ioe.toString());
+
+          }
+
+          return null;
+      }
+  }
 }
 
 
