@@ -77,11 +77,12 @@
 
     <Spinner
         android:id="@+id/spFrom"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
         android:layout_marginTop="8dp"
+        android:entries="@array/spinnerFrom"
         android:gravity="center_vertical|center_horizontal"
         app:layout_constraintEnd_toStartOf="@+id/spTo"
         app:layout_constraintHorizontal_bias="0.0"
@@ -91,12 +92,15 @@
 
     <Spinner
         android:id="@+id/spTo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="8dp"
         android:entries="@array/spinnerTo"
-        android:gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal|start"
         app:layout_constraintEnd_toEndOf="@+id/txtMoneyValue"
+        app:layout_constraintStart_toEndOf="@+id/spFrom"
         app:layout_constraintTop_toBottomOf="@+id/txtTo" />
 
     <Button
